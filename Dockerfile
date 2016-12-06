@@ -4,6 +4,7 @@ RUN apt-get update
 RUN apt-get install -y git
 ARG username="9zilla"
 ARG password="9zilla"
+RUN apt-get install -y sudo
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
 RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
