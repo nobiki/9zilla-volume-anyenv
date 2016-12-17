@@ -1,18 +1,13 @@
 FROM debian:jessie
 MAINTAINER Naoaki Obiki
-RUN apt-get update
-RUN apt-get install -y git
+RUN apt-get update && apt-get install -y sudo git
 ARG username="9zilla"
 ARG password="9zilla"
-RUN apt-get install -y sudo
 RUN mkdir /home/$username
 RUN useradd -s /bin/bash -d /home/$username $username && echo "$username:$password" | chpasswd
 RUN echo ${username}' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/$username
-RUN mkdir -p /home/$username/ci/
+RUN mkdir -p /home/$username/ci
 RUN chown -R $username:$username /home/$username
-RUN mkdir /var/workspace/
-RUN ln -s /var/workspace/ /home/$username/workspace
-RUN chown $username:$username /home/$username/workspace
 ENV HOME /home/$username
 ENV ANYENV_HOME $HOME/.anyenv
 ENV ANYENV_ENV $ANYENV_HOME/envs
