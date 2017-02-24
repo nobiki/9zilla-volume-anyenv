@@ -17,4 +17,3 @@ RUN echo 'eval "$(anyenv init -)"' >> /home/$username/.bash_profile
 ENV PATH $ANYENV_HOME/bin:$PATH
 RUN mkdir $ANYENV_ENV
 RUN chown -R $username:$username $ANYENV_HOME
-CMD ["/bin/chown -R 1000:1000 /home/9zilla/.anyenv/envs/"]
